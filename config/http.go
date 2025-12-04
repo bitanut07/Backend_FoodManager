@@ -16,8 +16,8 @@ func init() {
 		// HTTP Drivers
 		"drivers": map[string]any{
 			"gin": map[string]any{
-				// Optional, default is 4096 KB
-				"body_limit":   4096,
+				// Increased body limit for image uploads (10MB)
+				"body_limit":   10240,
 				"header_limit": 4096,
 				"route": func() (route.Route, error) {
 					return ginfacades.Route("gin"), nil
@@ -34,8 +34,8 @@ func init() {
 		"host": config.Env("APP_HOST", "127.0.0.1"),
 		// HTTP Port
 		"port": config.Env("APP_PORT", "3000"),
-		// HTTP Timeout, default is 3 seconds
-		"request_timeout": 3,
+		// HTTP Timeout, increased to 60 seconds for complex operations (orders, product creation)
+		"request_timeout": 60,
 		// HTTPS Configuration
 		"tls": map[string]any{
 			// HTTPS Host
