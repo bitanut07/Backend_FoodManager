@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: food-manager-backend
+    env: go
+    buildCommand: go mod tidy && go build -o main .
+    startCommand: ./main
+    envVars:
+      - key: APP_NAME
+        value: Food Manager Backend
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        sync: false
+      - key: APP_KEY
+        sync: false
+      - key: DB_CONNECTION
+        value: postgres
+      - key: DB_HOST
+        fromDatabase:
+          name: food-manager-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: food-manager-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: food-manager-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: food-manager-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: food-manager-db
+          property: password
+      - key: DB_SSLMODE
+        value: require
+      - key: DB_SCHEMA
+        value: public
+
+databases:
+  - name: food-manager-db
+    databaseName: food_manager
+    user: food_manager_user
+    plan: free
+

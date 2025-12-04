@@ -20,7 +20,7 @@ func init() {
 				"database": config.Env("DB_DATABASE", "forge"),
 				"username": config.Env("DB_USERNAME", ""),
 				"password": config.Env("DB_PASSWORD", ""),
-				"sslmode":  "disable",
+				"sslmode":  config.Env("DB_SSLMODE", "disable"),
 				"prefix":   "",
 				"singular": false,
 				"schema":   config.Env("DB_SCHEMA", "public"),

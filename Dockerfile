@@ -16,6 +16,8 @@ COPY --from=builder /build/main /www/
 COPY --from=builder /build/public/ /www/public/
 COPY --from=builder /build/storage/ /www/storage/
 COPY --from=builder /build/resources/ /www/resources/
-COPY --from=builder /build/.env /www/.env
+
+# Note: .env file is optional, environment variables should be set in Render
+# COPY --from=builder /build/.env /www/.env
 
 ENTRYPOINT ["/www/main"]
